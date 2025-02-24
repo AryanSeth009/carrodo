@@ -3,8 +3,7 @@
 import { useScroll, motion, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Star, Clock, MapPin } from "lucide-react";
+
 import NewsletterSection from "@/components/Newsletter";
 import Router from "next/router";
 
