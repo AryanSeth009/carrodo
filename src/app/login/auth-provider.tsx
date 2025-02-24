@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { createContext, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -6,7 +6,7 @@ interface AuthContextType {
   signInWithPhone: (phoneNumber: string) => Promise<void>;
   verifyOTP: (phoneNumber: string, otp: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: () => void;
   signUpWithPhone: (phoneNumber: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<void>;
   loading: boolean;
@@ -20,39 +20,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // 🚀 Signup with Phone Number
-  const signUpWithPhone = async (phoneNumber: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await fetch('/api/auth/phone-signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send OTP for signup');
-      }
-
-      return data;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to sign up with phone');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
+  // 🚀 Google Sign-In (Auth0)
+  const signInWithGoogle = () => {
+    window.location.href = '/api/auth/login?connection=google-oauth2';
   };
 
-  // 🚀 Signup with Email & Password
+  // 🚀 Sign Up with Email & Password
   const signUpWithEmail = async (email: string, password: string) => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/auth/email-signup', {
+      const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -63,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error(data.error || 'Failed to sign up');
       }
 
-      router.push('/dashboard'); // Redirect after successful signup
+      router.push('/dashboard');
       return data;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to sign up');
@@ -73,64 +52,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // 📱 Login with Phone (Send OTP)
-  const signInWithPhone = async (phoneNumber: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await fetch('/api/auth/phone-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send OTP');
-      }
-
-      return data;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to send OTP');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 🔑 Verify OTP
-  const verifyOTP = async (phoneNumber: string, otp: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await fetch('/api/auth/verify-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber, otp }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Invalid OTP');
-      }
-
-      router.push('/dashboard'); // Redirect after OTP verification
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Invalid OTP');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 📧 Login with Email & Password
+  // 📧 Email Login
   const signInWithEmail = async (email: string, password: string) => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/auth/email-login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -151,26 +79,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // 🔵 Sign in with Google
-  const signInWithGoogle = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      window.location.href = '/api/auth/google';
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to sign in with Google');
-      throw err;
-    } finally {
-      setLoading(false);  
-    }
-  };
-
   const value = {
-    signInWithPhone,
-    verifyOTP,
+    signInWithPhone: async () => {},
+    verifyOTP: async () => {},
     signInWithEmail,
     signInWithGoogle,
-    signUpWithPhone,
+    signUpWithPhone: async () => {},
     signUpWithEmail,
     loading,
     error,

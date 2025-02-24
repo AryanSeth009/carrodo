@@ -23,6 +23,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const { signInWithPhone, verifyOTP, signInWithEmail, signInWithGoogle, loading, error } = useAuth()
 
+  
 
   const handlePhoneSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
