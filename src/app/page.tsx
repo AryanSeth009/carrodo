@@ -15,6 +15,11 @@ export default function Page() {
       window.location.href = ('/login');
     // You can add your authentication logic, e.g., calling an API
   };
+  const handleSignup = () => {
+    // Implement your login logic here
+      window.location.href = ('/signup');
+    // You can add your authentication logic, e.g., calling an API
+  };
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -51,6 +56,7 @@ export default function Page() {
                 Login
               </Button>
               <Button
+              onClick={handleSignup}
                 variant="outline"
                 style={{
                   background: `linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), 
