@@ -54,9 +54,9 @@ export default function Page() {
                             style={{
                                 border: "1.5px solid transparent", // Keep space for the gradient
                                 borderRadius: "20px", // Rounded border
-                                background: "linear-gradient(#111E26, #111E26) padding-box, linear-gradient(90deg, #A47A1E 0%, #D3A84C 16%, #D3A84C 31.5%, #E6BE69 50%, #FFD87C 66.5%, #B58F3E 82.5%, #956D13 100%) border-box",
+                                background: "linear-gradient(#141414, #141414) padding-box, linear-gradient(90deg, #A47A1E 0%, #D3A84C 16%, #D3A84C 31.5%, #E6BE69 50%, #FFD87C 66.5%, #B58F3E 82.5%, #956D13 100%) border-box",
                             }}
-                            className="text-white gap-1 hover:bg-[#fff] bg-black !rounded-full px-6"
+                            className="text-white gap-1 hover:bg-[#fff]  !rounded-full px-6"
                         >
                             <span className="gap-2" style={{
                             }} ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="rgba(255,216,124,1)"><path d="M3 19H21V21H3V19ZM13 13.1716L19.0711 7.1005L20.4853 8.51472L12 17L3.51472 8.51472L4.92893 7.1005L11 13.1716V2H13V13.1716Z"></path></svg></span> Download App
