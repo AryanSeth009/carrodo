@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 🚀 Google Sign-In (Auth0)
   const signInWithGoogle = () => {
-    window.location.href = '/api/auth/login';
+    window.location.href = '/api/auth/[...auth0]?action=login';
   };
   
 
