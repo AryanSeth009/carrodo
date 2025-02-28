@@ -22,8 +22,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 🚀 Google Sign-In (Auth0)
   const signInWithGoogle = () => {
-    window.location.href = '/api/auth/login?connection=google-oauth2';
+    window.location.href = '/api/auth/login';
   };
+  
 
   // 🚀 Sign Up with Email & Password
   const signUpWithEmail = async (email: string, password: string) => {
