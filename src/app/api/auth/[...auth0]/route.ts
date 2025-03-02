@@ -8,8 +8,7 @@
     const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN!;
     const CLIENT_ID = process.env.AUTH0_CLIENT_ID!;
     const CLIENT_SECRET = process.env.AUTH0_CLIENT_SECRET!;
-    const REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/[...auth0]?action=callback`;
-
+    const REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/callback`;
 
     if (action === 'login') {
       const authUrl = `https://${AUTH0_DOMAIN}/authorize?` +
