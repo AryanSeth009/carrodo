@@ -34,14 +34,18 @@ export default function Page() {
           </div>
           <nav className="flex items-center gap-12">
             <div className="gap-6 flex">
-              <Button
+              <Button onClick={() => { 
+                window.location.href = ('/login');
+              }}
                 variant="outline"
                 className="border border-[#fff] h-[31px] w-[90px] text-[#fff] !rounded-full px-6 py-2 text-[15px] 
                          hover:bg-[#C4A052] hover:text-black transition-all duration-300"
               >
                 Login
               </Button>
-              <Button
+              <Button onClick={() => {
+                window.location.href = ('/signup');
+              }}
                 variant="outline"
                 className="border border-[#fff] h-[31px] w-[100px] text-[#fff] bg-gradient-to-r from-[#A47A1E80] via-[#D3A84C80] via-31% via-[#E6BE6980] via-50% via-[#FFD87C80] via-66% via-[#B58F3E80] via-82% to-[#956D1380] !rounded-full px-6 py-2 text-[15px] 
                          hover:bg-[#C4A052] hover:text-black transition-all duration-300"
